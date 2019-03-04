@@ -19,8 +19,7 @@ public class ClientAuthorizationCommand extends AbstractCommand implements Comma
 
 	public enum Authorize {
 		AUTH,
-		DENY,
-		KILL;
+		DENY;
 	}
 	
 	private int clientID = 0;
@@ -53,8 +52,6 @@ public class ClientAuthorizationCommand extends AbstractCommand implements Comma
 		} else if(is(Authorize.DENY)) {
 			sb.append("client-deny").space().append(clientID).space().append(keyID).space()
 					.appendQuote(reasonText).space().appendQuote(clientReasonText).append("\n\r");
-		} else if(is(Authorize.KILL)) {
-			sb.append("client-kill").space().append(clientID).append("\n");
 		}
 	}
 	

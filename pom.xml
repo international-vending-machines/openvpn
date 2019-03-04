@@ -3,8 +3,19 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>hu.ivm</groupId>
     <artifactId>openvpn</artifactId>
-    <version>0.41-SNAPSHOT</version>
+    <version>${revision}${sha1}${changelist}</version>
     <packaging>jar</packaging>
+
+    <properties>
+        <revision>0.45</revision>
+        <changelist>-SNAPSHOT</changelist>
+        <sha1/>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -59,9 +70,13 @@
             </plugin>
         </plugins>
     </build>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
+
+
+    <distributionManagement>
+        <repository>
+            <id>bintray-international-vendig-machines-maven</id>
+            <name>international-vendig-machines-maven</name>
+            <url>https://api.bintray.com/maven/international-vendig-machines/maven/openvpn/;publish=1</url>
+        </repository>
+    </distributionManagement>
 </project>

@@ -317,4 +317,7 @@ public class Client {
 		LOGGER.debug(logPrefix() + " " + StringEscapeUtils.ESCAPE_JAVA.translate(String.valueOf(msg)));
 	}
 
+	public String getName() {
+		return name;
+	}
 }

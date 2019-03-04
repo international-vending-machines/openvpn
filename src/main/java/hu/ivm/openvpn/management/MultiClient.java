@@ -28,5 +28,9 @@ public class MultiClient {
 			entry.getValue().start();
 		}
 	}
+
+	public Client getClient(String name) {
+		return clientMap.get(name);
+	}
 	
 }
