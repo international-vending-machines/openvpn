@@ -148,8 +148,9 @@ public class StrBuilder extends org.apache.commons.text.TextStringBuilder {
 		return this;
 	}
 
+	@SafeVarargs
 	@Override
-	public <T> StrBuilder appendAll(T... array) {
+	public final <T> StrBuilder appendAll(T... array) {
 		if(doAppend()) super.appendAll(array);
 		return this;
 	}
