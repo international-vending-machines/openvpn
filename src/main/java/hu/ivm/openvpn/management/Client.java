@@ -39,14 +39,14 @@ public class Client {
 	private static final Logger LOGGER = LogManager.getLogger(Client.class);
 	private final String name;
 
-	private String host = "127.0.0.1";
-	private Integer port = 9999;
+	private final InetAddress address;
+	private final Integer port;
 	private Socket socket = null;
 
 	private BufferedReader socketReader;
 	private Writer socketWriter;
 
-	private ClientListener clientListener;
+	private final ClientListener clientListener;
 	
 	private String logPrefix() {
 		return "["+name+"]";
@@ -176,14 +176,16 @@ public class Client {
 
 	}
 
-	private InboundThread inboundThread = new InboundThread();
-	private OutgoingThread outgoingThread = new OutgoingThread();
+	private final InboundThread inboundThread = new InboundThread();
+	private final OutgoingThread outgoingThread = new OutgoingThread();
 
-	private Map<String, Line> lineParserMap = new HashMap<>();
+	private final Map<String, Line> lineParserMap = new HashMap<>();
 
 	public Client(String name, InetAddress address, int port, ClientListener managementListener) {
 		this.name = name;
 		this.clientListener = managementListener;
+		this.address = address;
+		this.port = port;
 
 		ScanResult sr = new FastClasspathScanner("!!")
 				.matchClassesWithAnnotation(ManagementMessageLine.class, new ClassAnnotationMatchProcessor() {
@@ -208,7 +210,7 @@ public class Client {
 
 		try {
 			this.socket = new Socket(); //host, port);
-			SocketAddress sockaddr = new InetSocketAddress(host, port);
+			SocketAddress sockaddr = new InetSocketAddress(address, port);
 			this.socket.connect(sockaddr);
 			socketReader = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
 			socketWriter = new OutputStreamWriter(this.socket.getOutputStream());

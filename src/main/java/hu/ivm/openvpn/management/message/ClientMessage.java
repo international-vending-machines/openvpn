@@ -149,6 +149,7 @@ public class ClientMessage extends AbstractMessage implements Message {
 	public ClientAuthorizationCommand toClientAuthorization() {
 		ClientAuthorizationCommand cac = new ClientAuthorizationCommand(this.client);
 		cac.setClientID(getClientID());
+		cac.setKeyID(getKeyID());
 		return cac;
 	}
 	

@@ -1,6 +1,7 @@
 package hu.ivm.openvpn.management.command;
 
 import hu.ivm.openvpn.configuration.StrBuilder;
+import hu.ivm.openvpn.management.Client;
 
 /**
  *
@@ -8,9 +9,16 @@ import hu.ivm.openvpn.configuration.StrBuilder;
  */
 public class StatusCommand extends AbstractCommand {
 
+	public StatusCommand() {
+	}
+
+	public StatusCommand(Client client) {
+		super(client);
+	}
+
 	@Override
 	public void toString(StrBuilder sb) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		sb.append("status").append("\n");
 	}
 	
 }

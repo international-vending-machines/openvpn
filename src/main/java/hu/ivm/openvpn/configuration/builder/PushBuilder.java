@@ -28,5 +28,7 @@ public interface PushBuilder<E extends PushBuilder> extends List<ConfigurationOp
 	E pushPing(int intervalSec);
 
 	E pushPingRestart(int afterSec);
+
+	E push(ConfigurationOption configurationOption);
 	
 }

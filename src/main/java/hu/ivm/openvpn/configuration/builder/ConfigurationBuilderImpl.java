@@ -58,6 +58,12 @@ public class ConfigurationBuilderImpl extends ArrayList<ConfigurationOption> imp
 	}
 
 	@Override
+	public ConfigurationBuilder pushPeerInfo() {
+		add(new PushPeerInfo());
+		return this;
+	}
+
+	@Override
 	public ConfigurationBuilder pushPing(int intervalSec) {
 		add(new Push(new Ping(intervalSec)));
 		return this;
@@ -66,6 +72,12 @@ public class ConfigurationBuilderImpl extends ArrayList<ConfigurationOption> imp
 	@Override
 	public ConfigurationBuilder pushPingRestart(int afterSec) {
 		add(new Push(new PingRestart(afterSec)));
+		return this;
+	}
+
+	@Override
+	public ConfigurationBuilder push(ConfigurationOption configurationOption) {
+		add(new Push(configurationOption));
 		return this;
 	}
 
@@ -304,6 +316,18 @@ public class ConfigurationBuilderImpl extends ArrayList<ConfigurationOption> imp
 	@Override
 	public ConfigurationBuilder suppressTimestamps() {
 		add(new SuppressTimestamps());
+		return this;
+	}
+
+	@Override
+	public ConfigurationBuilder learnAddress(Path upScriptPath, String upScript) {
+		add(new LearnAddress(upScriptPath, upScript));
+		return this;
+	}
+
+	@Override
+	public ConfigurationBuilder bcastBuffers(int size) {
+		add(new BcastBuffers(size));
 		return this;
 	}
 }

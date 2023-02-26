@@ -97,4 +97,10 @@ public interface ConfigurationBuilder extends PushBuilder<ConfigurationBuilder> 
 
     ConfigurationBuilder managementHold();
 
+    ConfigurationBuilder pushPeerInfo();
+
+    ConfigurationBuilder learnAddress(Path upScriptPath, String upScript);
+
+    ConfigurationBuilder bcastBuffers(int size);
+
 }
